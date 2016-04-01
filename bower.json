@@ -1,0 +1,21 @@
+{
+  "name": "examplesAngular",
+  "authors": [
+    "Javier Ruiz Vázquez <java.rv87@gmail.com>"
+  ],
+  "description": "Ejemplo para Dany",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.3"
+  }
+}
