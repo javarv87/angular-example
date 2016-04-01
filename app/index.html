@@ -1,13 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- iniciamos nuestra aplicacion con ng-app que recibe el nombre de app.js -->
+<html lang="en" ng-app="starterApp">
 <head>
   <meta charset="UTF-8">
   <title>Ejemplo</title>
+  <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
 </head>
-<body>
+<!-- Iniciamos nuestro controlador que viene de controllers.js -->
+<body ng-controller="appCtrl">
+  <div class="container">
+    <div class="row">
+      <!-- Cambiamos el tamaño de las columnas si hay edicion o se va añadir nuevo -->
+      <div class="col-xs-12" ng-class="{'col-md-4': add || edit}">
+        <!-- Mostramos formulario si hay edicion o se va añadir nuevo -->
+        <form name="userForm" ng-if="add || edit">
+          <!-- Mostramos clase de error o success si cumple con la validacion de required -->
+          <div class="form-group" ng-class="{'has-error': userForm.firstname.$invalid, 'has-succes': userForm.firstname.$valid'}">
+            <label for="firstname">Nombre</label>
+            <input type="text" name="firstname" class="form-control" ng-model="user.firstname" placeholder="Nombre" required/>
+          </div>
+          <div class="form-group" ng-class="{'has-error': userForm.lastname.$invalid, 'has-succes': userForm.lastname.$valid'}">
+            <label for="lastname">Apellidos</label>
+            <input type="text" name="lastname" class="form-control" ng-model="user.lastname" placeholder="Pellidos" required/>
+          </div>
+          <div class="form-group" ng-class="{'has-error': userForm.address.$invalid, 'has-succes': userForm.address.$valid'}">
+            <label for="address">Dirección</label>
+            <input type="text" name="address" class="form-control" ng-model="user.address" placeholder="Dirección" required/>
+          </div>
+          <div class="form-group" ng-class="{'has-error': userForm.city.$invalid, 'has-succes': userForm.city.$valid'}">
+            <label for="city">Ciudad</label>
+            <input type="text" name="city" class="form-control" ng-model="user.city" placeholder="Ciudad" required/>
+          </div>
+          <div class="form-group" ng-class="{'has-error': userForm.phone.$invalid, 'has-succes': userForm.phone.$valid'}">
+            <label for="phone">Teléfono</label>
+            <input type="text" name="phone" class="form-control" ng-model="user.phone" placeholder="Teléfono" required/>
+          </div>
+          <div class="form-group" ng-class="{'has-error': userForm.currency.$invalid, 'has-succes': userForm.currency.$valid'}">
+            <label for="currency">Presupuesto</label>
+            <input type="text" name="currency" class="form-control" ng-model="user.currency" placeholder="Presupuesto" required/>
+          </div>
+          <!-- Desabilitamos botones si es invalido el formulario y mostramos un botton segun el caso de edicion o añadir -->
+          <button ng-if="edit" type="submit" class="btn btn-success" ng-click="saveUser(user);" ng-disabled="userForm.$invalid">Guardar Usuario</button>
+          <button ng-if="add" type="submit" class="btn btn-success" ng-click="addUser(user);" ng-disabled="userForm.$invalid">Agregar Usuario</button>
+        </form>
+      </div>
+      <div class="col-xs-12" ng-class="{'col-md-8': add || edit}">
+        <div class="text-right">
+          <button type="button" class="btn btn-success" ng-click="add = true">Añadir Nuevo</button>
+        </div>
+        <div class="form-group">
+          <label for="search">Buscar</label>
+          <!-- Aqui en el input de buscador el modelo es 'buscar' -->
+          <input type="text" class="form-control" ng-model="buscar" placeholder="Buscar"/>
+        </div>
+        <hr>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Editar</th>
+                <th>Eliminar</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Ciudad</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Presupuesto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Aqui en el filtro se usa el modelo del buscardor 'buscar', el pipe es la referencia al filtro y el nombre del filtro es filter, te pongo otros ejemplos de filtros definidos ya por angular -->
+              <tr ng-repeat="user in users | filter:buscar">
+                <td><button type="button" class="btn btn-primary" ng-click="editUser(user);"><i class="glyphicon glyphicon-pencil"></i></button></td>
+                <td><button type="button" class="btn btn-danger" ng-click="removeUser($index);"><i class="glyphicon glyphicon-trash"></i></button></td>
+                <td>{{user.firstname | uppercase}}</td>
+                <td>{{user.lastname | lowercase}}</td>
+                <td>{{user.address}}</td>
+                <td>{{user.city}}</td>
+                <td>{{user.phone}}</td>
+                <td>{{user.currency | currency}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script type="text/javascript" src="libs/angular/angular.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
   <script type="text/javascript" src="js/services.js"></script>
   <script type="text/javascript" src="js/controllers.js"></script>
-  <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

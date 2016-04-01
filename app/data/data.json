@@ -1,0 +1,34 @@
+[
+  {
+    "firstname": "John",
+    "lastname": "Bar Doe",
+    "address": "Av. Universidad 22",
+    "city": "Queretaro",
+    "phone": "55255512243",
+    "currency": "2000"
+  },
+  {
+    "firstname": "Nidhilu",
+    "lastname": "Raichusc",
+    "address": "Juarez 201",
+    "city": "Guanajuato",
+    "phone": "45255512242",
+    "currency": "12000"
+  },
+  {
+    "firstname": "Ashima",
+    "lastname": "Kumardo",
+    "address": "Blvd. Quintana 205",
+    "city": "Guadalajara",
+    "phone": "53464563456",
+    "currency": "20500"
+  },
+  {
+    "firstname": "Nitonz",
+    "lastname": "Ra",
+    "address": "Lomas de San Angel 2001",
+    "city": "México",
+    "phone": "43464433456",
+    "currency": "52000"
+  }
+]
