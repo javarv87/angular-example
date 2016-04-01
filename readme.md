@@ -3,4 +3,8 @@
   * Bower
 
 # Iniciar
+`npm install`
 `bower install`
+
+# Ejecutar Servidor
+`gulp serve`
